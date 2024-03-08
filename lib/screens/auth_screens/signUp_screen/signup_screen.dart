@@ -33,7 +33,7 @@ class SignupScreen extends StatelessWidget {
               child: Column(
                 children: [
                   MyTextField(
-                    controller: useremailController,
+                    controller: usernameController,
                     prefixIcon: const Icon(Icons.email),
                     hintText: 'User Name',
                   ),
