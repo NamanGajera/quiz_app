@@ -1,6 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/const/colors.dart';
+import 'package:quiz_app/screens/auth_screens/signUp_screen/signup_screen.dart';
+import 'package:quiz_app/screens/home_screens/home_screen.dart';
 
 import '../../../common/my_button.dart';
 import '../../../common/textField.dart';
@@ -11,6 +13,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final useremailController = TextEditingController();
+    final passwordController = TextEditingController();
     return Scaffold(
       backgroundColor: backgroundColor,
       body: Padding(
@@ -36,7 +39,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 15),
                   MyTextField(
-                    controller: useremailController,
+                    controller: passwordController,
                     prefixIcon: const Icon(Icons.lock),
                     hintText: 'User Password',
                   ),
@@ -53,8 +56,16 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 18),
-            const MyButton(
+            MyButton(
               buttonName: 'Login',
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const HomeScreen(),
+                  ),
+                );
+              },
             ),
             const Spacer(),
             Align(
@@ -67,7 +78,14 @@ class LoginScreen extends StatelessWidget {
                     TextSpan(
                       text: 'Signup',
                       style: const TextStyle(color: Colors.blue),
-                      recognizer: TapGestureRecognizer()..onTap = () {},
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const SignupScreen()),
+                              (route) => false);
+                        },
                     ),
                   ],
                 ),
