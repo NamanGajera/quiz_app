@@ -3,8 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/const/colors.dart';
 import 'package:quiz_app/screens/home_screens/que_list.dart';
-
-import '../../common/question_option.dart';
 import 'result_screen.dart';
 
 class QuestionsScreen extends StatefulWidget {
@@ -56,7 +54,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   }
 
   startTimer() {
-    timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         if (seconds > 0) {
           seconds--;
@@ -67,7 +65,10 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
           if (currentQueIndex > 9) {
             Navigator.pushAndRemoveUntil(
                 context,
-                MaterialPageRoute(builder: (context) => const ResultScreen()),
+                MaterialPageRoute(
+                    builder: (context) => ResultScreen(
+                          score: score,
+                        )),
                 (route) => route.isFirst);
             currentQueIndex = 0;
             seconds = 15;
@@ -77,16 +78,6 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
           timer.cancel();
         }
       });
-    });
-  }
-
-  void countScore(int value) {
-    setState(() {
-      selectedOption = value;
-      final hrquestion = hrquestionsList[currentQueIndex];
-      if (selectedOption == hrquestion.correctAnswerIndex) {
-        score++;
-      }
     });
   }
 
@@ -161,18 +152,22 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                       Expanded(
                         child: ListView.separated(
                           itemBuilder: (context, index) {
+                            var correctAnswer = hrquestion.correctAnswerIndex;
                             return GestureDetector(
                               onTap: () {
-                                countScore(index);
-                                if (hrquestion.correctAnswerIndex == index) {
+                                if (hrquestion.options[index] ==
+                                    correctAnswer) {
                                   optionColor[index] = Colors.green;
+                                  score++;
+                                  setState(() {});
                                 } else {
                                   optionColor[index] = Colors.red;
+                                  setState(() {});
                                 }
 
                                 if (currentQueIndex < 9) {
-                                  Future.delayed(Duration(milliseconds: 800),
-                                      () {
+                                  Future.delayed(
+                                      const Duration(milliseconds: 800), () {
                                     currentQueIndex++;
                                     resetColor();
                                     timer!.cancel();
@@ -184,8 +179,10 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                                   Navigator.pushAndRemoveUntil(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) =>
-                                              const ResultScreen()),
+                                        builder: (context) => ResultScreen(
+                                          score: score,
+                                        ),
+                                      ),
                                       (route) => route.isFirst);
                                 }
                               },

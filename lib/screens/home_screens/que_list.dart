@@ -1,7 +1,7 @@
 class QuestionModel {
   final String question;
   final List<String> options;
-  final int correctAnswerIndex;
+  final String correctAnswerIndex;
 
   const QuestionModel({
     required this.correctAnswerIndex,
@@ -13,7 +13,7 @@ class QuestionModel {
 const List<QuestionModel> hrquestionsList = [
   QuestionModel(
     question: 'Which of the following is the correct abbreviation of HRM',
-    correctAnswerIndex: 1,
+    correctAnswerIndex: 'A : Human Resource Management',
     options: [
       'A : Human Resource Management',
       'B : Human Resourcefulness Management',
@@ -24,7 +24,7 @@ const List<QuestionModel> hrquestionsList = [
   QuestionModel(
     question:
         'Which of the following correctly defines the Human Resource Department?',
-    correctAnswerIndex: 2,
+    correctAnswerIndex: 'B : Service department',
     options: [
       'A : Functional department',
       'B : Service department',
@@ -34,7 +34,7 @@ const List<QuestionModel> hrquestionsList = [
   ),
   QuestionModel(
     question: 'Human factor can be defined as __________',
-    correctAnswerIndex: 2,
+    correctAnswerIndex: 'B : Interrelated Physiological',
     options: [
       'A : concept of human behavior',
       'B : Interrelated Physiological',
@@ -45,7 +45,7 @@ const List<QuestionModel> hrquestionsList = [
   QuestionModel(
     question:
         'Finding ways to reduce __________ is a crucial responsibility of management.',
-    correctAnswerIndex: 3,
+    correctAnswerIndex: 'C : Uncertainty',
     options: [
       'A : Stress',
       'B : Dissatisfaction',
@@ -56,7 +56,7 @@ const List<QuestionModel> hrquestionsList = [
   QuestionModel(
     question:
         'Which of the following components are reformed to support the strategies of human resource function?',
-    correctAnswerIndex: 1,
+    correctAnswerIndex: 'A : Control systems',
     options: [
       'A : Control systems',
       'B : Appointment',
@@ -67,7 +67,7 @@ const List<QuestionModel> hrquestionsList = [
   QuestionModel(
     question:
         'Which of the following fields requires a skilled HR professional?',
-    correctAnswerIndex: 2,
+    correctAnswerIndex: 'B : Clarifying',
     options: [
       'A : People handling',
       'B : Clarifying',
@@ -78,7 +78,7 @@ const List<QuestionModel> hrquestionsList = [
   QuestionModel(
     question:
         'Which of the following fields requires a skilled HR professional?',
-    correctAnswerIndex: 3,
+    correctAnswerIndex: 'C : Uncertainty',
     options: [
       'A : Stress',
       'B : Dissatisfaction',
@@ -88,7 +88,7 @@ const List<QuestionModel> hrquestionsList = [
   ),
   QuestionModel(
     question: ' Which of the following is considered as strategic activity?',
-    correctAnswerIndex: 2,
+    correctAnswerIndex: 'B : Recruitment',
     options: [
       'A : Productivity',
       'B : Recruitment',
@@ -98,7 +98,7 @@ const List<QuestionModel> hrquestionsList = [
   ),
   QuestionModel(
     question: 'Who laid the foundation of Human Resource Management practices?',
-    correctAnswerIndex: 3,
+    correctAnswerIndex: 'C : Peter Drucker and Douglas McGregor',
     options: [
       'A : David C. McClelland',
       'B : Roethlisberger and Dickinson',
@@ -108,7 +108,7 @@ const List<QuestionModel> hrquestionsList = [
   ),
   QuestionModel(
     question: 'What does a job specification include?',
-    correctAnswerIndex: 3,
+    correctAnswerIndex: 'C : Psychological characteristics',
     options: [
       'A : Personal characteristics',
       'B : Physical characteristics',
