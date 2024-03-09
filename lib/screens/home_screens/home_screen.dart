@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'User Name',
+                'Quiz App',
                 style: TextStyle(
                     fontSize: 34,
                     fontWeight: FontWeight.w500,
@@ -80,6 +80,7 @@ class HomeScreen extends StatelessWidget {
                           MaterialPageRoute(
                             builder: (context) => QuestionsScreen(
                               title: queCategories[index],
+                              index: index,
                             ),
                           ),
                         );

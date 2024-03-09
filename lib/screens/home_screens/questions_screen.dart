@@ -9,9 +9,10 @@ class QuestionsScreen extends StatefulWidget {
   const QuestionsScreen({
     super.key,
     required this.title,
+    required this.index,
   });
   final String title;
-
+  final int index;
   @override
   State<QuestionsScreen> createState() => _QuestionsScreenState();
 }
@@ -36,6 +37,8 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   var currentQueIndex = 0;
   int? selectedOption;
   int score = 0;
+  late QuestionModel questions;
+
   var optionColor = [
     Colors.black,
     Colors.black,
@@ -43,6 +46,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     Colors.black,
     Colors.black,
   ];
+  // reseting color
   resetColor() {
     optionColor = [
       Colors.black,
@@ -53,6 +57,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     ];
   }
 
+  // Time Function
   startTimer() {
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
@@ -83,10 +88,18 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final hrquestion = hrquestionsList[currentQueIndex];
+    // final hrquestion = hrquestionsList[currentQueIndex];
+    if (widget.index == 0) {
+      questions = hrquestionsList[currentQueIndex];
+    } else if (widget.index == 1) {
+      questions = sqlQuestionList[currentQueIndex];
+    } else {
+      questions = fundamentalQuestionsList[currentQueIndex];
+    }
     return SafeArea(
       child: Scaffold(
         backgroundColor: primaryColor1,
+        // App Bar
         appBar: AppBar(
           elevation: 0,
           backgroundColor: primaryColor1,
@@ -115,9 +128,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                   padding: const EdgeInsets.all(12.0),
                   child: Column(
                     children: [
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      const SizedBox(height: 10),
                       // Timer
                       Stack(
                         alignment: Alignment.center,
@@ -142,21 +153,22 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                       ),
                       // Question text
                       Text(
-                        '${currentQueIndex + 1} : ${hrquestion.question}',
+                        '${currentQueIndex + 1} : ${questions.question}',
                         style: const TextStyle(
                           fontSize: 24,
                         ),
                         textAlign: TextAlign.justify,
                       ),
                       const SizedBox(height: 40),
+
+                      // Questions Options
                       Expanded(
                         child: ListView.separated(
                           itemBuilder: (context, index) {
-                            var correctAnswer = hrquestion.correctAnswerIndex;
+                            var correctAnswer = questions.correctAnswerIndex;
                             return GestureDetector(
                               onTap: () {
-                                if (hrquestion.options[index] ==
-                                    correctAnswer) {
+                                if (questions.options[index] == correctAnswer) {
                                   optionColor[index] = Colors.green;
                                   score++;
                                   setState(() {});
@@ -196,7 +208,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
                                   borderRadius: BorderRadius.circular(30),
                                 ),
                                 child: Text(
-                                  hrquestion.options[index],
+                                  questions.options[index],
                                   style: const TextStyle(fontSize: 19),
                                 ),
                               ),
