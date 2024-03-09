@@ -318,7 +318,7 @@ const List<QuestionModel> sqlQuestionList = [
   QuestionModel(
     question:
         'Which type of JOIN is used to returns rows that do not have matching values?',
-    correctAnswerIndex: 'C : DECIMAL',
+    correctAnswerIndex: 'C : EQUI JOIN',
     options: [
       'A : Natural JOIN',
       'B : Outer JOIN',
